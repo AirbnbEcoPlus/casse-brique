@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://hbi2po21e5uf"]
+
+[ext_resource type="Script" uid="uid://dqviqx5h8k0ns" path="res://endbutton/button.gd" id="1_n735c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t68xc"]
+font_size = 64
+
+[node name="End" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 396.0
+offset_top = 227.0
+offset_right = 783.0
+offset_bottom = 315.0
+text = "Fin de partie"
+label_settings = SubResource("LabelSettings_t68xc")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 445.0
+offset_top = 340.0
+offset_right = 724.0
+offset_bottom = 418.0
+text = "Rejouer"
+script = ExtResource("1_n735c")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

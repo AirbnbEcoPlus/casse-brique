@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyo1y3bf3emgu"]
+
+[ext_resource type="Script" uid="uid://83cmo8ocm6wu" path="res://pitfall/pitfall.gd" id="1_o51qq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fytcq"]
+size = Vector2(1155, 222)
+
+[node name="pitfall" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_o51qq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(577.5, 758)
+shape = SubResource("RectangleShape2D_fytcq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

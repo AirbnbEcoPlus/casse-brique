@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://rj7ygyhhgdk6"]
+
+[ext_resource type="Texture2D" uid="uid://dk7acleckojtb" path="res://objects/raquette/skin_raquette_a.tres" id="1_a67te"]
+[ext_resource type="Script" uid="uid://ckpwyuf2thakf" path="res://objects/raquette/control_joueur.gd" id="2_qae6n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qae6n"]
+size = Vector2(64, 16)
+
+[node name="raquette" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_a67te")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("2_qae6n")
+vitesse = 750
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qae6n")

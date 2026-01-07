@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3gj727pw5dn8"]
+
+[ext_resource type="Script" uid="uid://dthawb5eq1edv" path="res://objects/balle/balle.gd" id="1_jpd08"]
+[ext_resource type="Texture2D" uid="uid://rdm2uud0k3vg" path="res://objects/balle/skin_balle.tres" id="1_t0mth"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_t0mth"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t0mth"]
+radius = 4.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_t0mth")
+lock_rotation = true
+contact_monitor = true
+script = ExtResource("1_jpd08")
+vitesse = 150
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_t0mth")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_t0mth")
