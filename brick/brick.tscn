@@ -24,7 +24,7 @@ texture = SubResource("AtlasTexture_84gwy")
 
 [node name="playboom" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_geq20")
-volume_db = 12.505
+volume_db = 0.51
 max_distance = 4096.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

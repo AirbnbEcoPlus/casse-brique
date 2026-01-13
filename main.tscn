@@ -1,18 +1,52 @@
-[gd_scene load_steps=8 format=3 uid="uid://do5gsbjv7ugl7"]
+[gd_scene load_steps=13 format=3 uid="uid://do5gsbjv7ugl7"]
 
-[ext_resource type="Script" uid="uid://dmve5752yyinb" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://rj7ygyhhgdk6" path="res://objects/raquette/raquette.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://b3gj727pw5dn8" path="res://objects/balle/rigid_body_2d.tscn" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://dk7acleckojtb" path="res://objects/raquette/skin_raquette_a.tres" id="2_kek77"]
 [ext_resource type="PackedScene" uid="uid://5otkgrexwybe" path="res://murs/murs.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://bs3wcp4bo5tf3" path="res://objects/raquette/control_joueur2.gd" id="3_kek77"]
 [ext_resource type="PackedScene" uid="uid://dyo1y3bf3emgu" path="res://pitfall/pitfall.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dibiaistk5od8" path="res://brick/brick.tscn" id="5_lquwl"]
 [ext_resource type="AudioStream" uid="uid://cdwva21mjlywx" path="res://assets/music/fond_cut.mp3" id="7_272bh"]
+[ext_resource type="Script" uid="uid://gjlrjcjco03r" path="res://score.gd" id="8_5vw27"]
+
+[sub_resource type="GDScript" id="GDScript_272bh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qae6n"]
+size = Vector2(64, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qae6n"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_7mycd")
+script = SubResource("GDScript_272bh")
 
 [node name="raquette" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(604, 571)
+
+[node name="raquette2" type="CharacterBody2D" parent="."]
+position = Vector2(604, 571)
+
+[node name="Sprite2D" type="Sprite2D" parent="raquette2"]
+texture_filter = 1
+texture = ExtResource("2_kek77")
+
+[node name="Node2D" type="Node2D" parent="raquette2"]
+script = ExtResource("3_kek77")
+vitesse = 750
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="raquette2"]
+shape = SubResource("RectangleShape2D_qae6n")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="raquette2"]
+shape = SubResource("CircleShape2D_qae6n")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="raquette2"]
+position = Vector2(-20, 0)
+shape = SubResource("CircleShape2D_qae6n")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="raquette2"]
+position = Vector2(20, 0)
+shape = SubResource("CircleShape2D_qae6n")
 
 [node name="RigidBody2D" parent="." instance=ExtResource("2_0xm2m")]
 position = Vector2(605, 557)
@@ -482,8 +516,14 @@ position = Vector2(581, 411)
 [node name="brick150" parent="bricks" instance=ExtResource("5_lquwl")]
 position = Vector2(1089, 410)
 
+[node name="score" type="Label" parent="."]
+offset_left = 15.0
+offset_top = 570.0
+offset_right = 55.0
+offset_bottom = 593.0
+script = ExtResource("8_5vw27")
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_272bh")
-volume_db = -28.625
-pitch_scale = 0.96
+volume_db = 2.786
 autoplay = true

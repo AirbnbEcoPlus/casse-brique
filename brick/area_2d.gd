@@ -1,12 +1,10 @@
 extends Area2D
 
-signal addPointSignal
-
 var rng = RandomNumberGenerator.new()
 func _ready() -> void:
 	var random = rng.randf_range(-10.0, 10.0)
 	if random > 7:
-		emit_signal("addPointSignal")
+		GameManager.add_point()
 		queue_free()
 
 
@@ -14,6 +12,10 @@ func _ready() -> void:
 
 
 func _on_body_entered(_body: Node2D) -> void:
-	emit_signal("addPointSignal")
+	GameManager.add_point()
 	$playboom.play()
+	hide()
+	$CollisionShape2D.set_deferred("disabled", true)
+	
+	await $playboom.finished
 	queue_free()
